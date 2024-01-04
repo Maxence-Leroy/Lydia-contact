@@ -1,7 +1,7 @@
 package com.ragicorp.lydiacontact.libcontact
 
+import java.time.Instant
 import java.util.Calendar
-import java.util.Date
 import java.util.UUID
 
 data class AddressDomain(
@@ -25,17 +25,17 @@ data class ContactDomain(
     val title: String,
     val address: AddressDomain,
     val picture: PictureDomain,
-    val dateOfBirth: Date,
+    val dateOfBirth: Instant,
     val phone: String,
     val email: String,
     val nat: String
 )
 
-val stubDate: Date
+val stubDate: Instant
     get() {
         val calendar = Calendar.getInstance()
         calendar.set(1980, Calendar.JULY, 31, 2, 0)
-        return calendar.time
+        return calendar.time.toInstant()
     }
 
 val stubContact = ContactDomain(

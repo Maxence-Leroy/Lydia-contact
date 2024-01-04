@@ -5,6 +5,7 @@ import coil.ImageLoader
 import coil.ImageLoaderFactory
 import coil.disk.DiskCache
 import coil.memory.MemoryCache
+import com.ragicorp.lydiacontact.libcontact.contactModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
@@ -16,7 +17,7 @@ class MainApplication : Application(), ImageLoaderFactory {
         startKoin {
             androidLogger()
             androidContext(this@MainApplication)
-            modules()
+            modules(contactModule)
         }
     }
 
