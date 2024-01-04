@@ -61,6 +61,7 @@ dependencies {
     implementation(libs.material3)
     implementation(libs.navigation.compose)
     implementation(libs.koin.android)
+    implementation(libs.coil.compose)
     debugImplementation(libs.ui.tooling)
 
     implementation(project(":libContact"))
