@@ -53,6 +53,7 @@ android {
 dependencies {
     implementation(libs.core.ktx)
     implementation(libs.lifecycle.runtime.ktx)
+    implementation(libs.lifecycle.runtime.compose)
     implementation(libs.activity.compose)
     implementation(platform(libs.compose.bom))
     implementation(libs.ui)
@@ -61,7 +62,9 @@ dependencies {
     implementation(libs.material3)
     implementation(libs.navigation.compose)
     implementation(libs.koin.android)
+    implementation(libs.koin.compose)
     implementation(libs.coil.compose)
+    implementation(libs.coroutines)
     debugImplementation(libs.ui.tooling)
 
     implementation(project(":libContact"))

@@ -13,4 +13,8 @@ val contactModule = module {
             .build()
             .create(ContactApiService::class.java)
     }
+
+    factory {
+        ContactRepository(get())
+    }
 }
