@@ -1,4 +1,4 @@
-package com.ragicorp.lydiacontact
+package com.ragicorp.lydiacontact.mainActivity
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity

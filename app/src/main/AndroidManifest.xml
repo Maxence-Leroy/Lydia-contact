@@ -13,7 +13,7 @@
         android:theme="@style/Theme.LydiaContact"
         tools:targetApi="31">
         <activity
-            android:name=".MainActivity"
+            android:name="com.ragicorp.lydiacontact.mainActivity.MainActivity"
             android:exported="true"
             android:theme="@style/Theme.LydiaContact">
             <intent-filter>
