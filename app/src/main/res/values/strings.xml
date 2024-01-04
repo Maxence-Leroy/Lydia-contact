@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Lydia contact</string>
+    <string name="thumbnail">Contact\'s thumbnail</string>
 </resources>

@@ -58,5 +58,5 @@ val stubContact = ContactDomain(
     dateOfBirth = stubDate,
     phone = "Ask Hedwige",
     email = "harry.potter@hogwarts.edu",
-    nat = "EN"
+    nat = "GB"
 )
