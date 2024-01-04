@@ -15,4 +15,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "Lydia contact"
 include(":app")
- 
+include(":libContact")

@@ -62,4 +62,6 @@ dependencies {
     implementation(libs.navigation.compose)
     implementation(libs.koin.android)
     debugImplementation(libs.ui.tooling)
+
+    implementation(project(":libContact"))
 }
