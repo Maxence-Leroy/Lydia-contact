@@ -10,7 +10,7 @@ internal object ContactDomainApiConverter {
     internal fun contactFromApi(api: ContactApiResponse): List<ContactDomain> =
         api.results.map {
             ContactDomain(
-                id = UUID.randomUUID(),
+                id = UUID.fromString(it.login.uuid),
                 firstName = it.name.first,
                 lastName = it.name.last,
                 title = it.name.title,

@@ -1,7 +1,5 @@
 package com.ragicorp.lydiacontact.libcontact.api
 
-import com.google.gson.annotations.JsonAdapter
-
 data class NameApi(
     val title: String,
     val first: String,
@@ -25,6 +23,10 @@ data class DobApi(
     val date: String
 )
 
+data class LoginApi(
+    val uuid: String
+)
+
 data class PictureApi(
     val large: String,
     val thumbnail: String
@@ -37,7 +39,8 @@ data class ContactApi(
     val nat: String,
     val cell: String,
     val email: String,
-    val picture: PictureApi
+    val picture: PictureApi,
+    val login: LoginApi
 )
 
 data class ContactApiResponse(
