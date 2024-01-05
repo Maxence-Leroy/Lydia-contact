@@ -27,6 +27,8 @@ internal object ContactList {
     ) {
         val contacts =
             contactListViewModel.contacts.collectAsStateWithLifecycle(initialValue = emptyList())
+        val fetchingState =
+            contactListViewModel.fetchingState.collectAsStateWithLifecycle(initialValue = FetchingState.LOADING)
         val lazyListState = rememberLazyListState()
         val itemOffsetBeforeFetching = 3
         val shouldTriggerFetch: Boolean by remember {

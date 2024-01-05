@@ -19,14 +19,10 @@ class ContactRepository(
     }
 
     suspend fun fetchContacts(page: Int) {
-        try {
-            val response = contactApiService.fetchContacts(page = page, results = contactsPerPage)
-            val contacts = ContactDomainApiConverter.contactFromApi(response)
-            val contactsDb = contacts.map { ContactDomainDbConverter.contactDb(it) }
-            contactDao.insertAll(*contactsDb.toTypedArray())
-        } catch (e: Throwable) {
-
-        }
+        val response = contactApiService.fetchContacts(page = page, results = contactsPerPage)
+        val contacts = ContactDomainApiConverter.contactFromApi(response)
+        val contactsDb = contacts.map { ContactDomainDbConverter.contactDb(it) }
+        contactDao.insertAll(*contactsDb.toTypedArray())
     }
 
     companion object {
