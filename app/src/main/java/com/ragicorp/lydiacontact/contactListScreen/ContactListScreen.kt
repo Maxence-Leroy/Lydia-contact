@@ -1,10 +1,13 @@
 package com.ragicorp.lydiacontact.contactListScreen
 
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
@@ -12,9 +15,13 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.ragicorp.lydiacontact.contactListScreen.views.ContactItem
+import com.ragicorp.lydiacontact.contactListScreen.views.FetchingError
+import com.ragicorp.lydiacontact.ui.theme.Spacing
 import org.koin.androidx.compose.koinViewModel
 
 internal object ContactList {
@@ -47,10 +54,22 @@ internal object ContactList {
             Surface(modifier = Modifier.padding(padding)) {
                 LazyColumn(
                     modifier = Modifier.fillMaxSize(),
-                    state = lazyListState
+                    state = lazyListState,
+                    horizontalAlignment = Alignment.CenterHorizontally
                 ) {
                     items(contacts.value) {
                         ContactItem(contact = it)
+                    }
+                    item {
+                        Box(modifier = Modifier
+                            .height(100.dp)
+                            .padding(Spacing.single)) {
+                            when (fetchingState.value) {
+                                FetchingState.LOADING -> CircularProgressIndicator()
+                                FetchingState.ERROR -> FetchingError(retry = { contactListViewModel.fetchMoreContacts() })
+                                else -> {}
+                            }
+                        }
                     }
                 }
             }
