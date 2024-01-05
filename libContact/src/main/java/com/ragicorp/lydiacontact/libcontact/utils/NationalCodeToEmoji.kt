@@ -1,4 +1,4 @@
-package com.ragicorp.lydiacontact.utils
+package com.ragicorp.lydiacontact.libcontact.utils
 
 fun nationalCodeToEmoji(code: String): String {
     // Inspired by https://stackoverflow.com/a/35849652

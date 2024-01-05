@@ -6,6 +6,7 @@ import com.ragicorp.lydiacontact.libcontact.db.ContactDao
 import com.ragicorp.lydiacontact.libcontact.db.ContactDomainDbConverter
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
+import java.util.UUID
 
 class ContactRepository(
     private val contactApiService: ContactApiService,
@@ -23,6 +24,12 @@ class ContactRepository(
         val contacts = ContactDomainApiConverter.contactFromApi(response)
         val contactsDb = contacts.map { ContactDomainDbConverter.contactDb(it) }
         contactDao.insertAll(*contactsDb.toTypedArray())
+    }
+
+    fun getContactById(contactId: UUID): Flow<ContactDomain> {
+        return contactDao
+            .getContactById(contactId.toString())
+            .map { contactDb -> ContactDomainDbConverter.contactFromDb(contactDb) }
     }
 
     companion object {

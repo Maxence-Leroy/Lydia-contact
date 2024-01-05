@@ -1,5 +1,6 @@
 package com.ragicorp.lydiacontact.libcontact
 
+import com.ragicorp.lydiacontact.libcontact.utils.nationalCodeToEmoji
 import java.time.Instant
 import java.util.Calendar
 import java.util.UUID
@@ -29,7 +30,10 @@ data class ContactDomain(
     val phone: String,
     val email: String,
     val nat: String
-)
+) {
+    val textToShow: String
+        get() = "${nationalCodeToEmoji(nat)} $title $firstName $lastName"
+}
 
 val stubDate: Instant
     get() {

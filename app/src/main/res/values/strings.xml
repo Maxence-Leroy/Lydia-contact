@@ -3,4 +3,5 @@
     <string name="thumbnail">Contact\'s thumbnail</string>
     <string name="fetchingError">Something went wrong while fetching contacts</string>
     <string name="retryButton">Retry</string>
+    <string name="backButton">Back</string>
 </resources>

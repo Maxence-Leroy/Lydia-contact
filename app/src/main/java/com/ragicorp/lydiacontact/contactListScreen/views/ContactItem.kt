@@ -30,7 +30,6 @@ import com.ragicorp.lydiacontact.libcontact.ContactDomain
 import com.ragicorp.lydiacontact.libcontact.stubContact
 import com.ragicorp.lydiacontact.ui.theme.LydiaContactTheme
 import com.ragicorp.lydiacontact.ui.theme.Spacing
-import com.ragicorp.lydiacontact.utils.nationalCodeToEmoji
 
 private val imageSize = 48.dp
 
@@ -69,7 +68,7 @@ internal fun ContactItem(
 
             Column {
                 Text(
-                    text = "${nationalCodeToEmoji(contact.nat)} ${contact.title} ${contact.firstName} ${contact.lastName}",
+                    text = contact.textToShow,
                     style = MaterialTheme.typography.bodyLarge
                 )
                 Text(
