@@ -15,7 +15,7 @@ class ContactListViewModel(
 
     fun fetchMoreContacts() {
         viewModelScope.launch {
-            val nextPage = (contacts.value.size / 20) + 1 // TODO: use variable
+            val nextPage = (contacts.value.size / ContactRepository.contactsPerPage) + 1
             contactRepository.fetchContacts(page = nextPage)
         }
     }

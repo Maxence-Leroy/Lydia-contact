@@ -5,8 +5,9 @@ import retrofit2.http.Query
 
 
 interface ContactApiService {
-    @GET("api/1.3/?seed=lydia&results=20")
+    @GET("api/1.3/?seed=lydia")
     suspend fun fetchContacts(
-        @Query("page") page: Int
+        @Query("page") page: Int,
+        @Query("results") results: Int,
     ): ContactApiResponse
 }
