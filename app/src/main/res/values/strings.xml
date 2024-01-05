@@ -11,4 +11,5 @@
     <string name="messageDescription">Send a message</string>
     <string name="email">Email address</string>
     <string name="emailDescription">Send an email</string>
+    <string name="dateOfBirthTitle">Date of birth</string>
 </resources>

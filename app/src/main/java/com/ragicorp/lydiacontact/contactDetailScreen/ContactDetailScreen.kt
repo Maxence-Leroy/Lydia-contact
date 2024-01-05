@@ -30,6 +30,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import com.ragicorp.lydiacontact.R
 import com.ragicorp.lydiacontact.contactDetailScreen.views.AddressCard
+import com.ragicorp.lydiacontact.contactDetailScreen.views.DateOfBirthCard
 import com.ragicorp.lydiacontact.contactDetailScreen.views.EmailCard
 import com.ragicorp.lydiacontact.contactDetailScreen.views.PhoneNumberCard
 import com.ragicorp.lydiacontact.ui.theme.Spacing
@@ -126,6 +127,7 @@ internal object ContactDetail {
                         horizontalAlignment = Alignment.CenterHorizontally
                     ) {
                         ContactImage(size = ImageSize.LARGE, url = contactValue.picture.large)
+                        DateOfBirthCard(dateOfBirth = contactValue.dateOfBirth)
                         PhoneNumberCard(phoneNumber = contactValue.phone)
                         EmailCard(email = contactValue.email)
                         AddressCard(address = contactValue.generateReadableAddress())
