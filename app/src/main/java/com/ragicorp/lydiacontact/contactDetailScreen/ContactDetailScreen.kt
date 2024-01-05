@@ -104,7 +104,9 @@ internal object ContactDetail {
                         .padding(it),
                     color = MaterialTheme.colorScheme.background
                 ) {
-
+                    Text(
+                        text = contact.value!!.generateReadableAddress()
+                    )
                 }
             }
         }

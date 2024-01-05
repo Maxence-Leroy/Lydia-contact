@@ -1,5 +1,8 @@
 package com.ragicorp.lydiacontact.libcontact
 
+import com.google.i18n.addressinput.common.AddressData
+import com.google.i18n.addressinput.common.FormOptions
+import com.google.i18n.addressinput.common.FormatInterpreter
 import com.ragicorp.lydiacontact.libcontact.utils.nationalCodeToEmoji
 import java.time.Instant
 import java.util.Calendar
@@ -33,6 +36,24 @@ data class ContactDomain(
 ) {
     val textToShow: String
         get() = "${nationalCodeToEmoji(nat)} $title $firstName $lastName"
+
+    fun generateReadableAddress(): String {
+        val addressString = "${address.streetNumber} ${address.streetName}"
+
+        val addressData = AddressData.Builder()
+            .setAddress(addressString)
+            .setLocality(address.city)
+            .setPostalCode(address.postCode)
+            .setAdminArea(address.state)
+            .setCountry(nat)
+            .build()
+
+        val formatInterpreter = FormatInterpreter(FormOptions().createSnapshot())
+
+        val addressFragments = formatInterpreter.getEnvelopeAddress(addressData)
+
+        return addressFragments.joinToString("\n")
+    }
 }
 
 val stubDate: Instant
