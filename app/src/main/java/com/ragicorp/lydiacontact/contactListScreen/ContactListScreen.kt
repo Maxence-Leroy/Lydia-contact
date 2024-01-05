@@ -9,6 +9,9 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.derivedStateOf
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.ragicorp.lydiacontact.contactListScreen.views.ContactItem
@@ -25,10 +28,16 @@ internal object ContactList {
         val contacts =
             contactListViewModel.contacts.collectAsStateWithLifecycle(initialValue = emptyList())
         val lazyListState = rememberLazyListState()
-        val isAtBottom = !lazyListState.canScrollForward
+        val itemOffsetBeforeFetching = 3
+        val shouldTriggerFetch: Boolean by remember {
+            derivedStateOf {
+                (lazyListState.layoutInfo.visibleItemsInfo.lastOrNull()?.index
+                    ?: 0) >= contacts.value.size - itemOffsetBeforeFetching
+            }
+        }
 
-        LaunchedEffect(isAtBottom) {
-            if (isAtBottom) {
+        LaunchedEffect(shouldTriggerFetch) {
+            if (shouldTriggerFetch) {
                 contactListViewModel.fetchMoreContacts()
             }
         }
