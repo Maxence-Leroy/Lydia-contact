@@ -33,9 +33,9 @@ internal object ContactList {
         navigateToContactDetail: (String) -> Unit
     ) {
         val contacts =
-            contactListViewModel.contacts.collectAsStateWithLifecycle(initialValue = emptyList())
+            contactListViewModel.contacts.collectAsStateWithLifecycle()
         val fetchingState =
-            contactListViewModel.fetchingState.collectAsStateWithLifecycle(initialValue = FetchingState.LOADING)
+            contactListViewModel.fetchingState.collectAsStateWithLifecycle()
         val lazyListState = rememberLazyListState()
         val itemOffsetBeforeFetching = 3
         val shouldTriggerFetch: Boolean by remember {
