@@ -3,6 +3,7 @@ package com.ragicorp.lydiacontact.ui.theme
 import android.app.Activity
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Typography
 import androidx.compose.material3.darkColorScheme
@@ -57,4 +58,5 @@ fun LydiaContactTheme(
 
 object Spacing {
     val single = 8.dp
+    val screen = PaddingValues(horizontal = 16.dp, vertical = 8.dp)
 }

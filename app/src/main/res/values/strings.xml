@@ -4,4 +4,11 @@
     <string name="fetchingError">Something went wrong while fetching contacts</string>
     <string name="retryButton">Retry</string>
     <string name="backButton">Back</string>
+    <string name="addressTitle">Address</string>
+    <string name="mapDescription">Open map with address</string>
+    <string name="phoneNumber">Phone number</string>
+    <string name="callDescription">Call</string>
+    <string name="messageDescription">Send a message</string>
+    <string name="email">Email address</string>
+    <string name="emailDescription">Send an email</string>
 </resources>

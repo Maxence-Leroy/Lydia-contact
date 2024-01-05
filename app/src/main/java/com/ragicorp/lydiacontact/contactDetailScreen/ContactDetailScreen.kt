@@ -1,7 +1,12 @@
 package com.ragicorp.lydiacontact.contactDetailScreen
 
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -23,6 +28,10 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import com.ragicorp.lydiacontact.R
+import com.ragicorp.lydiacontact.contactDetailScreen.views.AddressCard
+import com.ragicorp.lydiacontact.contactDetailScreen.views.EmailCard
+import com.ragicorp.lydiacontact.contactDetailScreen.views.PhoneNumberCard
+import com.ragicorp.lydiacontact.ui.theme.Spacing
 import org.koin.androidx.compose.koinViewModel
 import org.koin.core.parameter.parametersOf
 import java.util.UUID
@@ -97,16 +106,25 @@ internal object ContactDetail {
                 )
             }
         ) {
-            if (contact.value != null) {
+            val contactValue = contact.value
+            if (contactValue != null) {
                 Surface(
                     modifier = Modifier
                         .fillMaxSize()
                         .padding(it),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    Text(
-                        text = contact.value!!.generateReadableAddress()
-                    )
+                    Column(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .verticalScroll(rememberScrollState())
+                            .padding(Spacing.screen),
+                        verticalArrangement = Arrangement.spacedBy(Spacing.single * 4)
+                    ) {
+                        PhoneNumberCard(phoneNumber = contactValue.phone)
+                        EmailCard(email = contactValue.email)
+                        AddressCard(address = contactValue.generateReadableAddress())
+                    }
                 }
             }
         }
