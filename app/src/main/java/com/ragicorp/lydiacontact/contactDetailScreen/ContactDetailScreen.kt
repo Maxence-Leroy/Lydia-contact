@@ -19,6 +19,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -32,6 +33,8 @@ import com.ragicorp.lydiacontact.contactDetailScreen.views.AddressCard
 import com.ragicorp.lydiacontact.contactDetailScreen.views.EmailCard
 import com.ragicorp.lydiacontact.contactDetailScreen.views.PhoneNumberCard
 import com.ragicorp.lydiacontact.ui.theme.Spacing
+import com.ragicorp.lydiacontact.ui.views.ContactImage
+import com.ragicorp.lydiacontact.ui.views.ImageSize
 import org.koin.androidx.compose.koinViewModel
 import org.koin.core.parameter.parametersOf
 import java.util.UUID
@@ -119,8 +122,10 @@ internal object ContactDetail {
                             .fillMaxWidth()
                             .verticalScroll(rememberScrollState())
                             .padding(Spacing.screen),
-                        verticalArrangement = Arrangement.spacedBy(Spacing.single * 4)
+                        verticalArrangement = Arrangement.spacedBy(Spacing.single * 4),
+                        horizontalAlignment = Alignment.CenterHorizontally
                     ) {
+                        ContactImage(size = ImageSize.LARGE, url = contactValue.picture.large)
                         PhoneNumberCard(phoneNumber = contactValue.phone)
                         EmailCard(email = contactValue.email)
                         AddressCard(address = contactValue.generateReadableAddress())
