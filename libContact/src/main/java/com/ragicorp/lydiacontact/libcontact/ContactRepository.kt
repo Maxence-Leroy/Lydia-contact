@@ -17,9 +17,9 @@ class ContactRepository(
             .map { contactsDb -> contactsDb.map { ContactDomainDbConverter.contactFromDb(it) } }
     }
 
-    suspend fun fetchContacts() {
+    suspend fun fetchContacts(page: Int) {
         try {
-            val response = contactApiService.fetchContacts(0)
+            val response = contactApiService.fetchContacts(page)
             val contacts = ContactDomainApiConverter.contactFromApi(response)
             val contactsDb = contacts.map { ContactDomainDbConverter.contactDb(it) }
             contactDao.insertAll(*contactsDb.toTypedArray())

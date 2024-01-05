@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
@@ -23,12 +24,20 @@ internal object ContactList {
     ) {
         val contacts =
             contactListViewModel.contacts.collectAsStateWithLifecycle(initialValue = emptyList())
-        LaunchedEffect(key1 = null) {
-            contactListViewModel.fetchContacts()
+        val lazyListState = rememberLazyListState()
+        val isAtBottom = !lazyListState.canScrollForward
+
+        LaunchedEffect(isAtBottom) {
+            if (isAtBottom) {
+                contactListViewModel.fetchMoreContacts()
+            }
         }
         Scaffold { padding ->
             Surface(modifier = Modifier.padding(padding)) {
-                LazyColumn(modifier = Modifier.fillMaxSize()) {
+                LazyColumn(
+                    modifier = Modifier.fillMaxSize(),
+                    state = lazyListState
+                ) {
                     items(contacts.value) {
                         ContactItem(contact = it)
                     }
