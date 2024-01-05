@@ -6,6 +6,9 @@ import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
+import org.koin.androidx.compose.koinViewModel
+import org.koin.core.parameter.parametersOf
+import java.util.UUID
 
 internal object ContactDetail {
     private const val RouteBase = "contactDetail"
@@ -30,7 +33,13 @@ internal object ContactDetail {
 
             Screen(
                 navigateBack = navigateBack,
-                contactId = contactId
+                contactDetailViewModel = koinViewModel(parameters = {
+                    parametersOf(
+                        UUID.fromString(
+                            contactId
+                        )
+                    )
+                })
             )
         }
     }
@@ -44,7 +53,7 @@ internal object ContactDetail {
     @Composable
     private fun Screen(
         navigateBack: () -> Unit,
-        contactId: String
+        contactDetailViewModel: ContactDetailViewModel
     ) {
 
     }

@@ -58,7 +58,9 @@ internal object ContactList {
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
                     items(contacts.value) {
-                        ContactItem(contact = it)
+                        ContactItem(
+                            contact = it,
+                            onPress = { navigateToContactDetail(it.id.toString()) })
                     }
                     item {
                         Box(modifier = Modifier

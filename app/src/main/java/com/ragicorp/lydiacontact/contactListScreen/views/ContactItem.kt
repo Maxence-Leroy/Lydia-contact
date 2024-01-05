@@ -36,10 +36,12 @@ private val imageSize = 48.dp
 
 @Composable
 internal fun ContactItem(
-    contact: ContactDomain
+    contact: ContactDomain,
+    onPress: () -> Unit
 ) {
     Surface(
-        modifier = Modifier.fillMaxWidth()
+        modifier = Modifier.fillMaxWidth(),
+        onClick = onPress
     ) {
         Row(
             modifier = Modifier.padding(horizontal = Spacing.single * 2, vertical = Spacing.single),
@@ -83,7 +85,7 @@ internal fun ContactItem(
 @Composable
 private fun ContactItemPreviewLight() {
     LydiaContactTheme(darkTheme = false) {
-        ContactItem(contact = stubContact)
+        ContactItem(contact = stubContact, onPress = {})
     }
 }
 
@@ -91,6 +93,6 @@ private fun ContactItemPreviewLight() {
 @Composable
 private fun ContactItemPreviewDark() {
     LydiaContactTheme(darkTheme = true) {
-        ContactItem(contact = stubContact)
+        ContactItem(contact = stubContact, onPress = {})
     }
 }
