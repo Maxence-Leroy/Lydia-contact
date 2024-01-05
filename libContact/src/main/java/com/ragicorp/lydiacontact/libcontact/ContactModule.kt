@@ -31,6 +31,6 @@ val contactModule = module {
     factory { get<ContactDatabase>().contactDao() }
 
     factory {
-        ContactRepository(get())
+        ContactRepository(get(), get())
     }
 }
